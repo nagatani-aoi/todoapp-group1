@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import humanize.Humanize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,18 @@ public class ToDo {
     @Temporal(TemporalType.TIMESTAMP)
     Date createdAt; // 作成日時
     @Temporal(TemporalType.TIMESTAMP)
-    Date doneAt; // 完了日時
+    Date doneAt;      //完了日時
     String background; // 背景色
+
+    public String humanizeCreatedAt() {
+        return Humanize.naturalDay(createdAt);
+    }
+
+    public String humanizeDoneAt() {
+        if(doneAt == null) {
+            return "";
+        }
+        return Humanize.naturalDay(doneAt);
+    }
+
 }
