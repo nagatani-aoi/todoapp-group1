@@ -1,49 +1,126 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>ToDoList</title>
-</head>
+  </head>
 
-<body>
-    <h1> みんなのToDoリスト</h1>
+  <body>
+    <h1>みんなのToDoリスト</h1>
     <p>
-        <a th:href="@{/{mid}/todos(mid=${member.mid})}">自分のToDo</a>
-        <a th:href="@{/}">ログアウト</a>
+      <a th:href="@{/{mid}/todos(mid=${member.mid})}">自分のToDo</a>
+      <a th:href="@{/}">ログアウト</a>
     </p>
     <h2>ToDo</h2>
     <table border="1">
-        <tr>
-            <th>#</th>
-            <th>タイトル</th>
-            <th>作成者</th>
-            <th>作成日時</th>
-        </tr>
-        <tr th:each="todo: ${todos}">
-            <td>[[${todo.seq}]]</td>
-            <td>[[${todo.title}]]</td>
-            <td>[[${todo.mid}]]</td>
-            <td>[[${todo.createdAt}]]</td>
-        </tr>
+      <tr>
+        <th>
+          #
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'seq'}, order=${'asc'})}"
+            >↓</a
+          >
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'seq'}, order=${'desc'})}"
+            >↑</a
+          >
+        </th>
+        <th>
+          タイトル
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'title'}, order=${'asc'})}"
+            >↓</a
+          >
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'title'}, order=${'desc'})}"
+            >↑</a
+          >
+        </th>
+        <th>
+          作成者
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'mid'}, order=${'asc'})}"
+            >↓</a
+          >
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'mid'}, order=${'desc'})}"
+            >↑</a
+          >
+        </th>
+        <th>
+          完了日時
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'done_at'}, order=${'asc'})}"
+            >↓</a
+          >
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'done_at'}, order=${'desc'})}"
+            >↑</a
+          >
+        </th>
+      </tr>
+      <tr th:each="todo: ${todos}">
+        <td>[[${todo.seq}]]</td>
+        <td>[[${todo.title}]]</td>
+        <td>[[${todo.mid}]]</td>
+        <td>[[${todo.createdAt}]]</td>
+      </tr>
     </table>
 
     <h2>Done</h2>
     <table border="1">
-        <tr>
-            <th>#</th>
-            <th>タイトル</th>
-            <th>作成者</th>
-            <th>完了日時</th>
-        </tr>
-        <tr th:each="done: ${dones}">
-            <td>[[${done.seq}]]</td>
-            <td>[[${done.title}]]</td>
-            <td>[[${done.mid}]]</td>
-            <td>[[${done.doneAt}]]</td>
-        </tr>
+      <tr>
+        <th>
+          #
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'seq'}, order=${'asc'})}"
+            >↓</a
+          >
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'seq'}, order=${'desc'})}"
+            >↑</a
+          >
+        </th>
+        <th>
+          タイトル
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'title'}, order=${'asc'})}"
+            >↓</a
+          >
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'title'}, order=${'desc'})}"
+            >↑</a
+          >
+        </th>
+        <th>
+          作成者
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'mid'}, order=${'asc'})}"
+            >↓</a
+          >
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'mid'}, order=${'desc'})}"
+            >↑</a
+          >
+        </th>
+        <th>
+          完了日時
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'done_at'}, order=${'asc'})}"
+            >↓</a
+          >
+          <a
+            th:href="@{/{mid}/todos/all(mid=${member.mid}, sort_by=${'done_at'}, order=${'desc'})}"
+            >↑</a
+          >
+        </th>
+      </tr>
+      <tr th:each="done: ${dones}">
+        <td>[[${done.seq}]]</td>
+        <td>[[${done.title}]]</td>
+        <td>[[${done.mid}]]</td>
+        <td>[[${done.doneAt}]]</td>
+      </tr>
     </table>
-
-</body>
-
+  </body>
 </html>
